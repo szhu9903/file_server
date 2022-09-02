@@ -1,0 +1,16 @@
+version: "3"
+services:
+  file_server:
+    image: file-server:latest
+    build: ./
+    restart: always
+    working_dir: /home/app
+    ports:
+      - 9091:9091
+    volumes:
+      - ./:/home/app
+    environment:
+      - TZ=Asia/Shanghai
+    command: twistd --nodaemon  --python twisted_server.py
+
+
